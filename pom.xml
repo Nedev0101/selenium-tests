@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
   <modules>
     <module>Block1MavenTest</module>
+      <module>Block2</module>
   </modules>
 
   <build>
