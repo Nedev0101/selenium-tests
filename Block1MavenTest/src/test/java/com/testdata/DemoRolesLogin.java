@@ -72,8 +72,9 @@ public class DemoRolesLogin {
         driver.findElement(By.xpath("//button[contains(@aria-label,'" + loginRole + "')]")).click();
 
         //login
-        buttonText.click();
+        buttonText.getText();
         Assert.assertEquals(buttonText.getText(), "Login", "Unexpected text in Login button");
+        buttonText.click();
 
         //open the user menu
         WebElement userMenuButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='cs-user-menu-button']")));
