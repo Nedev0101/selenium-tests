@@ -9,9 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginPage {
 
     private static final By EMAIL = By.xpath("//input[@type='email']");
-    private static final By PASSWORD = By.xpath("//input[@type='email']");
-    private static final By LOGIN_BUTTON = By.xpath("//input[@type='email']");
-    private static final By ERROR_MESSAGE = By.xpath("//input[@type='email']");
+    private static final By PASSWORD = By.xpath("//input[@type='password']");
+    private static final By LOGIN_BUTTON = By.xpath("//*[@data-testid='cs-login-submit']");
+    private static final By ERROR_MESSAGE = By.xpath("//*[@data-testid='cs-login-error']");
 
     private final WebDriver driver;
     private final WebDriverWait wait;

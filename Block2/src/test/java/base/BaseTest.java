@@ -8,9 +8,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Map;
 
 public abstract class BaseTest {
-    protected static final String BASE_URL = "http://localhost:5173/login";
+    protected static final String BASE_URL = "http://localhost:5173";
 
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -18,13 +19,13 @@ public abstract class BaseTest {
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
+//        options.addArguments("--headless=new");
         options.addArguments("--window-size=1920,1080");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-}
+    }
 
-@AfterEach
+    @AfterEach
     void tearDown() {
         if (driver != null) {
             driver.quit();
