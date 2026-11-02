@@ -29,9 +29,6 @@ public class Header {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(HEADER)).isDisplayed();
     }
 
-    public void openDashboard() { click(DASHBOARD_LINK);
-    }
-
     public void openNewRequestsLink() { click(NEW_REQUESTS_LINK);
     }
 

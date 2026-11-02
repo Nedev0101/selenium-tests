@@ -33,7 +33,7 @@ public class HighPrioNewRequest extends BaseTest {
     @Test
     void createHighPriorityRequest() {
 
-        String title = "Road high priority request";
+        String title = "Unusual traffic";
 
         header.openNewRequestsLink();
 
@@ -43,6 +43,8 @@ public class HighPrioNewRequest extends BaseTest {
                 .inputDate("11/01/2026")
                 .selectCategory()
                 .selectPriority()
+                ///Next method is for "Critical Requests Set to Low Priority" scenario
+//                .clickEmergency()
                 .clickOnNext()
                 .inputStreetAddress("Main Street 1")
                 .inputCity("Sofia")
@@ -52,13 +54,21 @@ public class HighPrioNewRequest extends BaseTest {
                 .selectContactMethod("EMAIL")
                 .inputEmail("john@example.com")
                 .inputPhone("088123")
+                ///Next method is for "Critical Requests Set to Low Priority" scenario
+//                .inputAlternativePhone("123123")
                 .clickOnNext()
                 .acceptTerms()
                 .clickOnNext()
                 .submitRequest();
 
+        ///  Assertions for the scenario with setup „Service Request Creation Fails“
+//        Assertions.assertFalse(newRequestPage.isRequestErrorMessageDisplayed(),"Unable to create service request at this time");
+
         header.openMyRequests();
 
-        Assertions.assertTrue(myRequestsPage.hasRequest(title), "Request is missing");
+        ///  Assertions and for the scenario with setup „Critical Requests Set to Low Priority“
+        Assertions.assertAll(() -> Assertions.assertEquals(title, myRequestsPage.getLatestRequestTitle(), "Latest request title is incorrect."),
+                () -> Assertions.assertEquals("Submitted", myRequestsPage.getLatestRequestStatus(), "Status is incorrect."),
+                () -> Assertions.assertEquals("High", myRequestsPage.getLatestRequestPriority(), "Priority is incorrect."));
     }
 }

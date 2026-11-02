@@ -25,6 +25,9 @@ public class NewRequestPage {
     private static final By PHONE_FIELD = By.xpath("//*[@name='phone']");
     private static final By TERMS_BUTTON = By.xpath("//*[@data-testid='cs-new-request-agree-terms']");
     private static final By SUBMIT_REQUEST = By.xpath("//*[@data-testid='cs-new-request-wizard-submit']");
+    private static final By REQUEST_ERROR_MESSAGE = By.xpath("//*[@data-testid='cs-submit-error']");
+    private static final By EMERGENCY_BUTTON = By.xpath("//*[@data-testid='cs-new-request-emergency']");
+    private static final By ALTERNATIVE_PHONE = By.xpath("//input[@name='alternatePhone']");
 
 
     private final WebDriverWait wait;
@@ -44,11 +47,6 @@ public class NewRequestPage {
 
     public NewRequestPage inputDescription(String description) {
         driver.findElement(DESCRIPTION).sendKeys(description);
-        return this;
-    }
-
-    public NewRequestPage inputDate() {
-        driver.findElement(DATE_OF_REQUEST).sendKeys();
         return this;
     }
 
@@ -109,6 +107,11 @@ public class NewRequestPage {
         return this;
     }
 
+    public NewRequestPage inputAlternativePhone(String phone) {
+        driver.findElement(ALTERNATIVE_PHONE).sendKeys(phone);
+        return this;
+    }
+
     public NewRequestPage acceptTerms() {
         click(TERMS_BUTTON);
         return this;
@@ -117,5 +120,14 @@ public class NewRequestPage {
     public NewRequestPage submitRequest() {
         click(SUBMIT_REQUEST);
         return this;
+    }
+
+    public NewRequestPage clickEmergency() {
+        click(EMERGENCY_BUTTON);
+        return this;
+    }
+
+    public boolean isRequestErrorMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(REQUEST_ERROR_MESSAGE)).isDisplayed();
     }
 }

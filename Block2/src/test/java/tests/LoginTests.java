@@ -5,7 +5,7 @@ import components.Header;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
@@ -39,5 +39,9 @@ public class LoginTests extends BaseTest {
 
         Assertions.assertFalse(loginPage.getErrorMessage().isBlank(), "Error message should be displayed for wrong password");
         Assertions.assertTrue(driver.getCurrentUrl().contains("/login"), "User is not on the login page");
+
+       /// Assertions for the negative scenario with „Accept Any Password for Login“
+//        Assertions.assertTrue(driver.getCurrentUrl().contains("/login"), "User should remain on Login page with wrong password");
+//        Assertions.assertFalse(header.isDisplayed(), "User should NOT be logged in with wrong password");
     }
 }
