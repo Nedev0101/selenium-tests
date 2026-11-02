@@ -12,6 +12,8 @@
   <modules>
     <module>Block1MavenTest</module>
       <module>Block2</module>
+      <module>Block3</module>
+    <module>Block3</module>
   </modules>
 
   <build>
