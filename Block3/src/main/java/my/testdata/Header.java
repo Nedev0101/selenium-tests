@@ -1,4 +1,4 @@
-package components;
+package my.testdata;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

@@ -1,27 +1,23 @@
 package com.testdata;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
-public class LoginPortal {
+public class LoginPortal extends BaseTest {
 
     @Test
-    public void openLoginPage() {
+    public void open_LoginPage() {
 
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("http://localhost:5173/login");
+        driver.get(BASE_URL + "/login");
 
         WebElement pageTitle = driver.findElement(By.xpath("//div//h1[text()='City Services Login']"));
+
         WebElement buttonText = driver.findElement(By.xpath("//div//button[text()='Login']"));
 
-        Assert.assertEquals(pageTitle.getText(), "City Services Login", "Incorrect login page title");
-        Assert.assertEquals(buttonText.getText(), "Login", "Incorrect login button text");
+        Assertions.assertEquals("City Services Login", pageTitle.getText(), "Incorrect login page title");
 
-        driver.quit();
+        Assertions.assertEquals("Login", buttonText.getText(), "Incorrect login button text");
     }
 }

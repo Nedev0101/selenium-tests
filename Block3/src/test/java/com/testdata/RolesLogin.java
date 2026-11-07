@@ -1,92 +1,56 @@
 package com.testdata;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
-import java.time.Duration;
-
-public class RolesLogin {
-
+public class RolesLogin extends BaseTest {
 
     @Test
-    public void checkCitizenRole() {
+    void check_CitizenRole() {
         loginAndCheckRole("Citizen", "CITIZEN");
     }
 
     @Test
-    public void checkClerkRole() {
+    void check_ClerkRole() {
         loginAndCheckRole("Clerk", "CLERK");
     }
 
     @Test
-    public void checkSupervisorRole() {
+    void check_SupervisorRole() {
         loginAndCheckRole("Supervisor", "SUPERVISOR");
     }
 
     @Test
-    public void checkFieldAgentRole() {
+    void check_FieldAgentRole() {
         loginAndCheckRole("Field Agent", "FIELD_AGENT");
     }
 
     @Test
-    public void checkAdministratorRole() {
+    void check_AdministratorRole() {
         loginAndCheckRole("Administrator", "ADMIN");
     }
 
-    public void loginAndCheckRole(String loginRole, String expectedRole) {
+    private void loginAndCheckRole(String loginRole, String expectedRole) {
 
-        //adding chrome options to test in headless mode and to avoid Google browser password manager recommendations
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-notifications");
-
-        Map<String, Object> prefs = new HashMap<>();
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-
-        options.setExperimentalOption("prefs", prefs);
-
-        WebDriver driver = new ChromeDriver(options);
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
-        driver.get("http://localhost:5173/login");
-
+        driver.get(BASE_URL + "/login");
         WebElement buttonText = driver.findElement(By.xpath("//*[@id='root']/div//form/button"));
 
-        //selecting a role
         driver.findElement(By.xpath("//button[contains(@aria-label,'" + loginRole + "')]")).click();
 
-        //login
-        buttonText.getText();
-        Assert.assertEquals(buttonText.getText(), "Login", "Unexpected text in Login button");
+        Assertions.assertEquals("Login", buttonText.getText(), "Unexpected text in Login button");
+
         buttonText.click();
 
-        //open the user menu
         WebElement userMenuButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='cs-user-menu-button']")));
+
         userMenuButton.click();
 
-        //verify the role
         WebElement roleChip = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//div[@data-testid='cs-user-menu']//span[contains(@class,'MuiChip-label')]")));
 
-        Assert.assertEquals(roleChip.getText(), expectedRole, "Wrong demo role");
-
-        driver.quit();
+        Assertions.assertEquals(expectedRole, roleChip.getText(), "Wrong demo role");
     }
 }
