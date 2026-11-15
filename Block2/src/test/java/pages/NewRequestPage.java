@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NewRequestPage extends FormPage<> {
+public class NewRequestPage extends FormPage<Object> {
 
     private static final By REQUEST_TITLE_FIELD = By.xpath("//*[@name='title']");
     private static final By DESCRIPTION = By.xpath("//*[@name='description']");
@@ -39,7 +39,17 @@ public class NewRequestPage extends FormPage<> {
         this.wait = wait;
     }
 
-    private void click(By locator) {wait.until(ExpectedConditions.elementToBeClickable(locator)).click();}
+    @Override
+    public void fillForm(Object formData) {
+
+    }
+
+    @Override
+    public void submitForm() {
+
+    }
+
+    public void click(By locator) {wait.until(ExpectedConditions.elementToBeClickable(locator)).click();}
 
     public NewRequestPage inputRequestTitle(String title) {
         driver.findElement(REQUEST_TITLE_FIELD).sendKeys(title);
