@@ -1,11 +1,12 @@
 package pages;
 
+import com.testdata.testdata.pages.FormPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NewRequestPage {
+public class NewRequestPage extends FormPage<> {
 
     private static final By REQUEST_TITLE_FIELD = By.xpath("//*[@name='title']");
     private static final By DESCRIPTION = By.xpath("//*[@name='description']");

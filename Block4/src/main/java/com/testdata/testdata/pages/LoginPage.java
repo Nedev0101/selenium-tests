@@ -1,12 +1,13 @@
-package pages;
+package com.testdata.testdata.pages;
 
+import com.testdata.testdata.Models.LoginForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+public class LoginPage extends FormPage<LoginForm> {
 
     private static final By EMAIL = By.xpath("//input[@type='email']");
     private static final By PASSWORD = By.xpath("//input[@type='password']");
@@ -23,7 +24,7 @@ public class LoginPage {
         this.url = baseUrl + "/Login/";
     }
 
-    public LoginPage open(){
+    public LoginPage open() {
         driver.get(url);
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
         return this;
@@ -42,5 +43,16 @@ public class LoginPage {
 
     public boolean isLoginButtonDisplayed() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON)).isDisplayed();
+    }
+
+    @Override
+    public void fillForm(LoginForm formData) {
+        driver.findElement(EMAIL).sendKeys(formData.email());
+        driver.findElement(PASSWORD).sendKeys(formData.password());
+    }
+
+    @Override
+    public void submitForm() {
+        driver.findElement(LOGIN_BUTTON).click();
     }
 }

@@ -1,4 +1,4 @@
-package my.testdata;
+package com.testdata;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -23,7 +23,8 @@ public class Header {
         this.wait = wait;
     }
 
-    private void click(By locator) {wait.until(ExpectedConditions.elementToBeClickable(locator)).click();}
+    private void click(By locator) {wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+    }
 
     public boolean isDisplayed() {
         return !driver.findElements(HEADER).isEmpty();
