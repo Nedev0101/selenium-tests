@@ -55,4 +55,7 @@ public class LoginPage extends FormPage<LoginForm> {
     public void submitForm() {
         driver.findElement(LOGIN_BUTTON).click();
     }
+
+    public void submit() {
+    }
 }

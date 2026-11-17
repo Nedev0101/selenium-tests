@@ -15,6 +15,7 @@
       <module>Block3</module>
 <!--    <module>Block3</module>-->
       <module>Block4</module>
+    <module>Block5</module>
   </modules>
 
   <build>

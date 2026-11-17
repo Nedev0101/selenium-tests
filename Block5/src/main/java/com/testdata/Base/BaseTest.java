@@ -1,0 +1,35 @@
+package com.testdata.Base;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+public abstract class BaseTest {
+    protected static final String BASE_URL = "http://localhost:5173";
+
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+
+    @BeforeEach
+    void setUp() {
+        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless");
+
+        // Wide enough for the desktop header (narrow windows show the mobile drawer instead).
+        options.addArguments("--window-size=1400,900");
+        driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    @AfterEach
+    void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+}
