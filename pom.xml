@@ -12,6 +12,10 @@
   <modules>
     <module>Block1MavenTest</module>
       <module>Block2</module>
+      <module>Block3</module>
+<!--    <module>Block3</module>-->
+      <module>Block4</module>
+    <module>Block5</module>
   </modules>
 
   <build>
@@ -39,24 +43,18 @@
       <version>5.13.4</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>7.12.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>7.12.0</version>
-      <scope>compile</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.testng</groupId>-->
+<!--      <artifactId>testng</artifactId>-->
+<!--      <version>7.12.0</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>junit</groupId>-->
+<!--      <artifactId>junit</artifactId>-->
+<!--      <version>4.13.2</version>-->
+<!--      <scope>compile</scope>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
